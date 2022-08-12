@@ -18,20 +18,18 @@ import storage from "../../lib/utils/storage";
 
 const Profile = ({ initialProfile }) => {
   const { mutate } = useSWRConfig();
-  console.log("initial profile -------> ", initialProfile);
 
   const router = useRouter();
   const {
     query: { pid },
   } = router;
 
+  const { data: currentUser } = useSWR("user", storage);
   const { data: fetchedProfile, error: profileError } = useSWR(
     `${SERVER_BASE_URL}/profiles/${encodeURIComponent(String(pid))}`,
     fetcher,
     { fallbackData: initialProfile }
   );
-
-  console.log("fetchedProfile ---------->    ", fetchedProfile);
 
   if (profileError) return <ErrorMessage message="Can't load profile." />;
 
@@ -39,7 +37,6 @@ const Profile = ({ initialProfile }) => {
 
   const { username, bio, image, following } = profile;
 
-  const { data: currentUser } = useSWR("user", storage);
   const isLoggedIn = checkLogin(currentUser);
   const isUser = currentUser && username === currentUser?.username;
 

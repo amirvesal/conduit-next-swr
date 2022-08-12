@@ -62,7 +62,6 @@ const ArticlePreview = ({ article }: Article) => {
         );
       }
     } catch (error) {
-      console.log(error);
       setPreview({
         ...preview,
       });

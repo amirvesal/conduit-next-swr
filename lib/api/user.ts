@@ -85,7 +85,6 @@ class UserAPI {
   };
   unfollow = async (username) => {
     const user: any = JSON.parse(window.localStorage.getItem("user"));
-    console.log("user ------> ", user);
 
     const token = user?.token;
     try {

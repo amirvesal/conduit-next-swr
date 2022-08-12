@@ -15,7 +15,6 @@ const Comment = ({ comment }) => {
   const canModify =
     isLoggedIn && currentUser?.username === comment?.author?.username;
 
-    console.log('log canMOdify -------> ',canModify);
     
 
   return (
